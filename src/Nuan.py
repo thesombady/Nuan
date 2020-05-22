@@ -15,7 +15,7 @@ def importfile(filename, path=None):
 
 def importimage(filename, path=None):
     """ This imports any image to the current directory """
-    if path == none:
+    if path == None:
         image = Image.open(filename)
         return image
     else:
@@ -39,7 +39,12 @@ def facedetection(unknownimage, knownimage, path=None, save_path=None):
         for (x, y, w, h) in faces: # Draws rectangles around the faces
             cv2.rectangle(img, (x ,y), (x+w ,y+h), (0, 255, 0), 2)
             cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
-    #implement a save picture function
+        if save_path != None:
+            cv2image = cv2.cvtColor(img, cv2.COLOR_BGR2RGBA)
+            filename = time.ctime()
+            path_to_save = os.path.join(path, filename)
+            cv2.imwrite(path_to_save, cv2image)
+
 
 def facerecognition(unknownimage, knownimage, path):
     if path == None:
@@ -53,10 +58,11 @@ def facerecognition(unknownimage, knownimage, path):
         known_encoding = face_recognition.face_encodings(known)[0]
 
         result = face_recognition.compare_faces([known_encoding], unknown_encoding)
-        return f'The recognitiontest is {result} for the two images.'
+        return f'The face-recognition test was {result}.'
 
 folder = '/Users/andreasevensen/Desktop/Uni/Programming/Enterprises/Known_faces/Admin'
 andreas = 'Andreas.png'
-unknown = '/Users/andreasevensen/Desktop/Uni/Programming/Enterprises/Known_faces/Admin/'
+unknown = 'unknown.png'
 
-facedetection(unknown, andreas, folder)
+facedetection(unknown, andreas, folder, folder)
+#print(facerecognition(unknown, andreas, folder))
