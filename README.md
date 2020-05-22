@@ -1,5 +1,5 @@
 # Nuan
- This is a standard package created in python for the use of facial-detection and facial-recognition.
+ This is a standard package created in python for the use of facial-detection and facial-recognition. Moreover, you'll need the following mentioned liberaries in your system: cv2, dlib, face_recognition, time, os, sys, pkg_resources, numpy & PIL.
 
  ## Installation
 
