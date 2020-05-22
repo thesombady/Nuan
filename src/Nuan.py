@@ -30,9 +30,11 @@ def facedetection(unknownimage, knownimage, path=None, save_path=None):
         'data/haarcascade_frontalface_default.xml'
         )
     faces_cascade = cv2.CascadeClassifier(haar_xml)
-    img = cv2.imread(unknownimage, 0)
+    unknown_image = os.path.join(path, unknownimage)
+    img = cv2.imread(unknown_image)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = faces_cascade.detectMultiScale(gray, 1.1, 4)
+
+    faces = faces_cascade.detectMultiScale(img, 1.1, 4)
     if len(faces) !=0 : #If the haar algorithm finds a face, it fill fill the array-> faces!=0
         facerecognition(unknownimage, knownimage, path)
 
@@ -42,8 +44,8 @@ def facedetection(unknownimage, knownimage, path=None, save_path=None):
         if save_path != None:
             cv2image = cv2.cvtColor(img, cv2.COLOR_BGR2RGBA)
             filename = time.ctime()
-            path_to_save = os.path.join(path, filename)
-            cv2.imwrite(path_to_save, cv2image)
+            os.chdir(save_path)
+            cv2.imwrite(f'{filename}', cv2image)
 
 
 def facerecognition(unknownimage, knownimage, path):
@@ -62,9 +64,13 @@ def facerecognition(unknownimage, knownimage, path):
 
 
 #This is an example of the code
-folder = '/Users/andreasevensen/Desktop/Uni/Programming/Enterprises/Known_faces/Admin'
-andreas = 'Andreas.png'
-unknown = 'unknown.png'
+folder = '/Users/andreasevensen/Documents/GitHub/Nuan/src'
+unknown = 'unknown.jpeg'
+known = 'Andreas.jpeg'
 
-facedetection(unknown, andreas, folder, folder)
-#print(facerecognition(unknown, andreas, folder))
+facedetection(unknown, known, folder, folder)
+#print(facerecognition(unknown, known, folder))
+
+
+
+
