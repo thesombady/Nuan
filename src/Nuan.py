@@ -60,6 +60,8 @@ def facerecognition(unknownimage, knownimage, path):
         result = face_recognition.compare_faces([known_encoding], unknown_encoding)
         return f'The face-recognition test was {result}.'
 
+
+#This is an example of the code
 folder = '/Users/andreasevensen/Desktop/Uni/Programming/Enterprises/Known_faces/Admin'
 andreas = 'Andreas.png'
 unknown = 'unknown.png'
