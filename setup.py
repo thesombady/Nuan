@@ -8,7 +8,7 @@ setup(
     version = "0.0.1",
     author = "Andreas Evensen",
     author_email = "Andreas.evensen11@gmail.com",
-    description = "This is a package that will do the mentioned task",
+    description = "This package implements video, and picture recognition using dlib and face_recognition.",
     long_description = long_description,
     long_description_content_type = "text/markdown",
     packages = find_packages(),
