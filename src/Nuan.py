@@ -100,7 +100,7 @@ def video_facedetect(camera = 0, referense_image = None, path = None, save_path 
     print(path)
     """
     cv2.imwrite(name , cv2image)
-    cv2.waitKey()
+    #cv2.waitKey()
     recognition(name, referense_image_path, path)
 
 
