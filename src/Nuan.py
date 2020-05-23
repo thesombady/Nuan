@@ -66,7 +66,8 @@ def facerecognition(unknownimage, knownimage, path):
 
 
 def video_facedetect(camera = 0, referense_image = None, path = None, save_path = None):
-    """Detects faces in a specified camera-port, takes a referense picture and check them """
+    """Detects faces in a specified camera-port, takes a referense picture and check them. If no specified path is present, it will look in the current directory,
+    likewise if no save_path is specified it will save it into the current directory."""
     haar_xml = pkg_resources.resource_filename(
         'cv2', 
         'data/haarcascade_frontalface_default.xml'
