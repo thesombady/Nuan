@@ -65,26 +65,41 @@ def facerecognition(unknownimage, knownimage, path):
         return f'The face-recognition test was {result}.', result
 
 
-
-
-    
-def video_recognition(camera, reference_image = None, path = None, path_to_save = None):
-    """Takes the input camera and saves the regonized file to the path of which you want to save,
-    if no path is specified then it saves to the current directory."""
-    if path_to_save == None:
+def video_facedetect(camera = 0, referense_image = None, path = None, save_path = None):
+    """Detects faces in a specified camera-port, takes a referense picture and check them """
+    haar_xml = pkg_resources.resource_filename(
+        'cv2', 
+        'data/haarcascade_frontalface_default.xml'
+        )
+    if path == None:
         directory = os.getcwd()
         os.chdir(directory)
     else:
-        os.chdir(path_to_save)
-    if image_to_checkwith == None:
-        pass # well write a code to fetch a random image.
+        os.chdir(path)
     
+    faces_cascade = cv2.CascadeClassifier(haar_xml)
     cap = cv2.VideoCapture(camera)
     ret, frame = cap.read()
+    
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = faces_cascade.detectMultiScale(gray, 1.1, 4)
+    if len(faces) != 0: #If the haar algorithm finds a face, it fill fill the array-> faces!=0
+        for (x, y, w, h) in faces: # Draws rectangles around the faces
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+    cv2.imshow("something", frame)
+    cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+    filename = f'{time.ctime()}.png'
+    name = os.path.join(path, filename)
+    #print(frame)
+    """
+    cv2.imwrite(name , cv2image)
+    cv2.waitKey()
+    """
+    print(path)
+    
 
 
 
 folder = '/Users/andreasevensen/Documents/GitHub/Nuan'
 reference = 'Andreas.jpeg'
-
 #video_facedetection(0)
