@@ -12,10 +12,16 @@ pip install nuan
 
  This is an example of the code
  ```python
-folder = '/Users/andreasevensen/Documents/GitHub/Nuan/src'
-unknown = 'unknown.jpeg'
-known = 'Andreas.jpeg'
+folder = '/Users/desktop/'#look inside this folder
+unknown = 'unknown.jpeg'#get an unknown image from that folder
+known = 'Andreas.jpeg'#get an known image from that folder
 
 facedetection(unknown, known, folder, folder)
 ```
 
+## Devolopment
+If you would lkike to contribute to the ongoing project, email the developer (Andreas Evensen) and run the following command to download Nuan as active source code.
+
+```python
+pip install nuan[dev]
+```

@@ -24,7 +24,7 @@ def importimage(filename, path=None):
         return image
 
 def facedetection(unknownimage, knownimage, path=None, save_path=None):
-    """ """
+    """ Takes an unknown image and looks for faces. """
     haar_xml = pkg_resources.resource_filename(
         'cv2', 
         'data/haarcascade_frontalface_default.xml'
@@ -35,7 +35,7 @@ def facedetection(unknownimage, knownimage, path=None, save_path=None):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     faces = faces_cascade.detectMultiScale(img, 1.1, 4)
-    if len(faces) !=0 : #If the haar algorithm finds a face, it fill fill the array-> faces!=0
+    if len(faces) != 0 : #If the haar algorithm finds a face, it fill fill the array-> faces!=0
         facerecognition(unknownimage, knownimage, path)
 
         for (x, y, w, h) in faces: # Draws rectangles around the faces
@@ -49,6 +49,7 @@ def facedetection(unknownimage, knownimage, path=None, save_path=None):
 
 
 def facerecognition(unknownimage, knownimage, path):
+    """ This takes an unknown image and compare it with an known image. If the face_recognition deems them to be the same person you will return true """
     if path == None:
         pass #wer're in the same directory as the files
     else:
@@ -60,17 +61,11 @@ def facerecognition(unknownimage, knownimage, path):
         known_encoding = face_recognition.face_encodings(known)[0]
 
         result = face_recognition.compare_faces([known_encoding], unknown_encoding)
-        return f'The face-recognition test was {result}.'
+        return f'The face-recognition test was {result}.', result
 
 
-#This is an example of the code
-folder = '/Users/andreasevensen/Documents/GitHub/Nuan/src'
-unknown = 'unknown.jpeg'
-known = 'Andreas.jpeg'
-
-facedetection(unknown, known, folder, folder)
-#print(facerecognition(unknown, known, folder))
-
-
-
-
+def video_facedetection(camera, path_to_save=None):
+    if path_to_save == None:
+        directory = os.getcwd()
+        os.chdir(directory)
+    
