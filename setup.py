@@ -5,7 +5,7 @@ with open("readme.md", "r") as readme_file:
 
 setup(
     name = 'Naun',
-    version = "0.0.1",
+    version = "0.0.2",
     author = "Andreas Evensen",
     author_email = "Andreas.evensen11@gmail.com",
     description = "This package implements video, and picture recognition using dlib and face_recognition.",
