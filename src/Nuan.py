@@ -117,6 +117,7 @@ def recognition(unknown, reference):
 
 
 
+
 folder = '/Users/andreasevensen/Documents/GitHub/Nuan'
 reference = 'Andreas.jpeg'
 print(os.getcwd())
