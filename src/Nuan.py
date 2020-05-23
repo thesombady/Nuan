@@ -2,7 +2,6 @@ import os, sys, time, dlib, face_recognition, cv2
 import numpy as np
 from PIL import Image
 import pkg_resources
-from threading import Timer
 
 def importfile(filename, path=None):
     """This imports any file to the current directory."""
@@ -102,7 +101,7 @@ def video_facedetect(camera = 0, referense_image = None, path = None, save_path 
     cv2.imwrite(name , cv2image)
     #cv2.waitKey()
     recognition(name, referense_image_path)
-    
+
 
 
 def recognition(unknown, reference):
@@ -118,11 +117,13 @@ def recognition(unknown, reference):
 
 
 
-
+"""
+#Example code
 folder = '/Users/andreasevensen/Desktop/Uni/Programming/Enterprises/Known_faces/Admin'
 reference = 'Andreas.jpeg'
 print(os.getcwd())
 print(folder)
+"""
 
 video_facedetect(camera = 0, referense_image = reference, path = folder)
 #video_facedetection(0)
