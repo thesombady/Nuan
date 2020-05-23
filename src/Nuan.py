@@ -77,6 +77,9 @@ def video_facedetect(camera = 0, referense_image = None, path = None, save_path 
         os.chdir(directory)
     else:
         os.chdir(path)
+    if save_path == None:
+        save_path = os.getcwd()
+    referense_image_path = os.join(path, referense_image)
     
     faces_cascade = cv2.CascadeClassifier(haar_xml)
     cap = cv2.VideoCapture(camera)
@@ -87,20 +90,37 @@ def video_facedetect(camera = 0, referense_image = None, path = None, save_path 
     if len(faces) != 0: #If the haar algorithm finds a face, it fill fill the array-> faces!=0
         for (x, y, w, h) in faces: # Draws rectangles around the faces
             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-    cv2.imshow("something", frame)
+
     cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
     filename = f'{time.ctime()}.png'
-    name = os.path.join(path, filename)
-    #print(frame)
+    name = os.path.join(save_path, filename)
+    """
+    print(name)
+    print(save_path)
+    print(path)
     """
     cv2.imwrite(name , cv2image)
     cv2.waitKey()
-    """
-    print(path)
-    
+    recognition(name, referense_image_path, path)
+
+
+def recognition(unknown, reference):
+    """ This takes an unknown image and compare it with an known image. If the face_recognition deems them to be the same person you will return true"""
+    unknown = face_recognition.load_image_file(unknown)
+    reference = face_recognition.load_image_file(reference)
+    unknown_encoding = face_recognition.face_encodings(unknown)[0]
+    referece_encoding = face_recognition.face_encodings(reference)[0]
+
+    result = face_recognition.compare_faces([referece_encoding], unknown_encoding)
+    print(f' The test for facial-recognition was {result}.')
+    return result
 
 
 
 folder = '/Users/andreasevensen/Documents/GitHub/Nuan'
 reference = 'Andreas.jpeg'
+print(os.getcwd())
+print(folder)
+
+video_facedetect(camera = 0, referense_image = reference, path = folder)
 #video_facedetection(0)
