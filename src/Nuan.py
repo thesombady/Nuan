@@ -65,40 +65,10 @@ def facerecognition(unknownimage, knownimage, path):
         return f'The face-recognition test was {result}.', result
 
 
-def video_facedetection(camera, path_to_save=None):
-    """Takes the input camera and saves the regonized file to the path of which you want to save,
-    if no path is specified then it saves to the current directory."""
-    if path_to_save == None:
-        directory = os.getcwd()
-        os.chdir(directory)
-    else:
-        os.chdir(path_to_save)
-    haar_xml = pkg_resources.resource_filename(
-    'cv2', 
-    'data/haarcascade_frontalface_default.xml'
-    )
-    faces_cascade = cv2.CascadeClassifier(haar_xml)
-    cap = cv2.VideoCapture(camera)
-    ret, frame = cap.read()
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    faces = faces_cascade.detectMultiScale(gray, 1.1, 4)
-    if len(faces) != 0:
-        for (x, y, w, h) in faces:
-            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255,0), 2)
-    if ret:
-        while True:
-            cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
-            image = Image.fromarray(cv2image)
-            #print(cv2image)
-            cv2.imshow("something", cv2image)
-            cv2.waitKey()
-            if cv2.waitKey(1) % 0xFF == ord('q'):
-                break
-        video_capture.release()
-        cv2.destroyAllWindows()
+
 
     
-def video_recognition(camera, image_to_checkwith = None, path = None, path_to_save = None):
+def video_recognition(camera, reference_image = None, path = None, path_to_save = None):
     """Takes the input camera and saves the regonized file to the path of which you want to save,
     if no path is specified then it saves to the current directory."""
     if path_to_save == None:
@@ -111,10 +81,10 @@ def video_recognition(camera, image_to_checkwith = None, path = None, path_to_sa
     
     cap = cv2.VideoCapture(camera)
     ret, frame = cap.read()
-    facedetection()
 
 
 
-
+folder = '/Users/andreasevensen/Documents/GitHub/Nuan'
+reference = 'Andreas.jpeg'
 
 #video_facedetection(0)
