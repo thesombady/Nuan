@@ -79,7 +79,7 @@ def video_facedetect(camera = 0, referense_image = None, path = None, save_path 
         os.chdir(path)
     if save_path == None:
         save_path = os.getcwd()
-    referense_image_path = os.join(path, referense_image)
+    referense_image_path = os.path.join(path, referense_image)
     
     faces_cascade = cv2.CascadeClassifier(haar_xml)
     cap = cv2.VideoCapture(camera)
@@ -101,7 +101,8 @@ def video_facedetect(camera = 0, referense_image = None, path = None, save_path 
     """
     cv2.imwrite(name , cv2image)
     #cv2.waitKey()
-    recognition(name, referense_image_path, path)
+    recognition(name, referense_image_path)
+    
 
 
 def recognition(unknown, reference):
@@ -118,7 +119,7 @@ def recognition(unknown, reference):
 
 
 
-folder = '/Users/andreasevensen/Documents/GitHub/Nuan'
+folder = '/Users/andreasevensen/Desktop/Uni/Programming/Enterprises/Known_faces/Admin'
 reference = 'Andreas.jpeg'
 print(os.getcwd())
 print(folder)
