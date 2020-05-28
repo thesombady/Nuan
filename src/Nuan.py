@@ -112,6 +112,8 @@ def fetchfile(path):
         if file.endswith(".jpg") or file.endswith(".jpeg") or file.endswith(".png"):
             currentfile  = os.path.join(filepath, file)
             correlationlist.append(currentfile)
+    return correlationlist
+    
 
 
 def multiplerecognition(unknown):
@@ -152,7 +154,7 @@ def recognition(unknown, reference):
 folder = '/Users/andreasevensen/Desktop/Empleyes'
 Unknown = 'something.jpeg'
 corr = '/Users/andreasevensen/Desktop/Empleyes/Known' 
-fetchfile(corr)
+unused = fetchfile(corr)
 something = os.path.join(folder, Unknown)
 multiplerecognition(something)
 
@@ -166,3 +168,8 @@ print(folder)
 
 #video_facedetect(camera = 0, referense_image = reference, path = folder)
 #video_facedetection(0)
+
+
+
+def mrecognition(unknown):
+    pass
