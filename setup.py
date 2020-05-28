@@ -13,12 +13,12 @@ setup(
     long_description_content_type = "text/markdown",
     packages = find_packages(),
     Lisence = "Mit",
-    install_requires = ["dlib", "face_recognition",],
+    install_requires = ["dlib", "face_recognition", "os", "PIL", "cv2", "pkg_resources", "sys"],
     classifiers = [
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License"
     ],
-    keywords = "Facial Detection"
+    keywords = "Facial Detection", "Facial-recognition"
     
 )
