@@ -11,12 +11,12 @@ This code works on Windows and OS, important to note is that one have dependenci
 
  Run the following to install this package
  ``` python
-pip install nuan
+pip install naun
  ```
 
  ## Usage
 
- This is an example of the code
+#Example code
  ```python
 folder = '/Users/desktop/'#look inside this folder
 unknown = 'unknown.jpeg'#get an unknown image from that folder
@@ -25,11 +25,25 @@ known = 'Andreas.jpeg'#get an known image from that folder
 facedetection(unknown, known, folder, folder)
 ```
 
+
+
+"""
+#Example code
+```python
+folder = '/Users/andreasevensen/Desktop/Empleyes'
+Unknown = 'something.jpeg'
+corr = '/Users/andreasevensen/Desktop/Empleyes/Known' 
+unused = fetchfile(corr)
+something = os.path.join(folder, Unknown)
+multiplerecognition(something)
+```
+
+
 ## Devolopment
 If you would like to contribute to the ongoing project, email the developer (Andreas Evensen) and run the following command to download Nuan as active source code.
 
 ```python
-pip install nuan[dev]
+pip install -naun.[dev]
 ```
 
 ## Contribute

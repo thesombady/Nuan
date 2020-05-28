@@ -3,26 +3,6 @@ import numpy as np
 from PIL import Image
 import pkg_resources
 
-def importfile(filename, path=None):
-    """This imports any file to the current directory."""
-    if path == None:
-        file = open(filename)
-        return file
-    else:
-        new_path = os.path.join(path, filename)
-        file = open(new_path)
-        return file
-
-def importimage(filename, path=None):
-    """ This imports any image to the current directory """
-    if path == None:
-        image = Image.open(filename)
-        return image
-    else:
-        new_path = os.path.join(path, filename)
-        image = Image.open(new_path)
-        return image
-
 def facedetection(unknownimage, knownimage, path=None, save_path=None):
     """ Takes an unknown image and looks for faces. """
     haar_xml = pkg_resources.resource_filename(
@@ -105,6 +85,7 @@ def video_facedetect(camera = 0, referense_image = None, path = None, save_path 
         pass
 
 def fetchfile(path):
+    """This take a path to a directory that you want to referense, it will make a global variable such that one can use the function 'multiplerecognition'. """
     global correlationlist
     filepath = path
     correlationlist = []
@@ -114,8 +95,6 @@ def fetchfile(path):
             correlationlist.append(currentfile)
     return correlationlist
     
-
-
 def multiplerecognition(unknown):
     """This function will iterate through a libery of photos and return wheter it had a match in that liberary """
     correct = []
@@ -134,9 +113,6 @@ def multiplerecognition(unknown):
     else:
         print('The person it not in the correlation list')
     
-
-
-
 def recognition(unknown, reference):
     """ This takes an unknown image and compare it with an known image. If the face_recognition deems them to be the same person you will return true"""
     unknown = face_recognition.load_image_file(unknown)
@@ -147,26 +123,3 @@ def recognition(unknown, reference):
     result = face_recognition.compare_faces([referece_encoding], unknown_encoding)
     print(f' The test for facial-recognition was {result}.')
     return result
-
-
-
-"""
-#Example code
-folder = '/Users/andreasevensen/Desktop/Empleyes'
-Unknown = 'something.jpeg'
-corr = '/Users/andreasevensen/Desktop/Empleyes/Known' 
-unused = fetchfile(corr)
-something = os.path.join(folder, Unknown)
-multiplerecognition(something)
-"""
-
-#Example code
-"""
-folder = '/Users/andreasevensen/Desktop/Uni/Programming/Enterprises/Known_faces/Admin'
-reference = 'Andreas.jpeg'
-print(os.getcwd())
-print(folder)
-"""
-
-#video_facedetect(camera = 0, referense_image = reference, path = folder)
-#video_facedetection(0)
