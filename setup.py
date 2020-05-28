@@ -5,7 +5,7 @@ with open("readme.md", "r") as readme_file:
 
 setup(
     name = 'Naun',
-    version = "0.0.4",
+    version = "0.0.6",
     author = "Andreas Evensen",
     author_email = "Andreas.evensen11@gmail.com",
     description = "This package implements video, and picture recognition using dlib and face_recognition.",
@@ -15,7 +15,7 @@ setup(
     package_dir={'':'src'},
     packages = find_packages(),
     Lisence = "Mit",
-    install_requires = ["dlib", "face_recognition", "os", "PIL", "cv2", "pkg_resources", "sys"],
+    install_requires = ["dlib", "face_recognition"],
     classifiers = [
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",

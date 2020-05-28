@@ -150,6 +150,7 @@ def recognition(unknown, reference):
 
 
 
+"""
 #Example code
 folder = '/Users/andreasevensen/Desktop/Empleyes'
 Unknown = 'something.jpeg'
@@ -157,6 +158,7 @@ corr = '/Users/andreasevensen/Desktop/Empleyes/Known'
 unused = fetchfile(corr)
 something = os.path.join(folder, Unknown)
 multiplerecognition(something)
+"""
 
 #Example code
 """
