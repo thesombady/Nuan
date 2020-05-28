@@ -64,7 +64,7 @@ def facerecognition(unknownimage, knownimage, path):
         return f'The face-recognition test was {result}.', result
 
 
-def video_facedetect(camera = 0, referense_image = None, path = None, save_path = None):
+def video_facedetect(camera = 0, referense_image = None, path = None, save_path = None, multiple = None):
     """Detects faces in a specified camera-port, takes a referense picture and check them. If no specified path is present, it will look in the current directory,
     likewise if no save_path is specified it will save it into the current directory."""
     haar_xml = pkg_resources.resource_filename(
@@ -79,6 +79,8 @@ def video_facedetect(camera = 0, referense_image = None, path = None, save_path 
     if save_path == None:
         save_path = os.getcwd()
     referense_image_path = os.path.join(path, referense_image)
+    if not multiple == None:
+        fetchfile(multiple)
     
     faces_cascade = cv2.CascadeClassifier(haar_xml)
     cap = cv2.VideoCapture(camera)
@@ -93,14 +95,43 @@ def video_facedetect(camera = 0, referense_image = None, path = None, save_path 
     cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
     filename = f'{time.ctime()}.png'
     name = os.path.join(save_path, filename)
-    """
-    print(name)
-    print(save_path)
-    print(path)
-    """
-    cv2.imwrite(name , cv2image)
+
+    cv2.imwrite(name, cv2image)
     #cv2.waitKey()
-    recognition(name, referense_image_path)
+    if referense_image == None:
+        recognition(name, referense_image_path)
+    else:
+        #multiplerecognition(name)
+        pass
+
+def fetchfile(path):
+    global correlationlist
+    filepath = path
+    correlationlist = []
+    for file in os.listdir(filepath):
+        if file.endswith(".jpg") or file.endswith(".jpeg") or file.endswith(".png"):
+            currentfile  = os.path.join(filepath, file)
+            correlationlist.append(currentfile)
+
+
+def multiplerecognition(unknown):
+    """This function will iterate through a libery of photos and return wheter it had a match in that liberary """
+    correct = []
+    for file in correlationlist:
+        unknown1 = face_recognition.load_image_file(unknown)
+        reference = face_recognition.load_image_file(file)
+        unknown_encoding = face_recognition.face_encodings(unknown1)[0]
+        referece_encoding = face_recognition.face_encodings(reference)[0]
+
+        result = face_recognition.compare_faces([referece_encoding], unknown_encoding)
+        print(f' The test for facial-recognition was {result}.')
+        if result == [True]:
+            correct.append(result)
+    if len(correct)!=0:
+        print('The person is in the correlation list')
+    else:
+        print('The person it not in the correlation list')
+    
 
 
 
@@ -117,13 +148,27 @@ def recognition(unknown, reference):
 
 
 
-"""
 #Example code
+folder = '/Users/andreasevensen/Desktop/Empleyes'
+Unknown = 'something.jpeg'
+corr = '/Users/andreasevensen/Desktop/Empleyes/Known' 
+fetchfile(corr)
+something = os.path.join(folder, Unknown)
+multiplerecognition(something)
+
+
+
+
+
+
+
+#Example code
+"""
 folder = '/Users/andreasevensen/Desktop/Uni/Programming/Enterprises/Known_faces/Admin'
 reference = 'Andreas.jpeg'
 print(os.getcwd())
 print(folder)
 """
 
-video_facedetect(camera = 0, referense_image = reference, path = folder)
+#video_facedetect(camera = 0, referense_image = reference, path = folder)
 #video_facedetection(0)
