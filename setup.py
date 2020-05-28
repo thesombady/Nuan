@@ -12,6 +12,7 @@ setup(
     long_description = long_description,
     long_description_content_type = "text/markdown",
     py_modules=["Nuan"],
+    package_dir={'':'src'},
     packages = find_packages(),
     Lisence = "Mit",
     install_requires = ["dlib", "face_recognition", "os", "PIL", "cv2", "pkg_resources", "sys"],
@@ -20,6 +21,6 @@ setup(
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License"
     ],
-    keywords = "Facial Detection", "Facial-recognition"
+    keywords = "Facial Detection"
     
 )
