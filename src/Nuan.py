@@ -168,8 +168,3 @@ print(folder)
 
 #video_facedetect(camera = 0, referense_image = reference, path = folder)
 #video_facedetection(0)
-
-
-
-def mrecognition(unknown):
-    pass

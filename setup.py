@@ -11,6 +11,7 @@ setup(
     description = "This package implements video, and picture recognition using dlib and face_recognition.",
     long_description = long_description,
     long_description_content_type = "text/markdown",
+    py_modules=["Nuan"],
     packages = find_packages(),
     Lisence = "Mit",
     install_requires = ["dlib", "face_recognition", "os", "PIL", "cv2", "pkg_resources", "sys"],
