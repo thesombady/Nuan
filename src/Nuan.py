@@ -156,12 +156,6 @@ fetchfile(corr)
 something = os.path.join(folder, Unknown)
 multiplerecognition(something)
 
-
-
-
-
-
-
 #Example code
 """
 folder = '/Users/andreasevensen/Desktop/Uni/Programming/Enterprises/Known_faces/Admin'
