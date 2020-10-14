@@ -85,7 +85,6 @@ def video_facedetect(camera = 0, referense_image = None, path = None, save_path 
         pass
 
 def fetchfile(path):
-    """This take a path to a directory that you want to referense, it will make a global variable such that one can use the function 'multiplerecognition'. """
     global correlationlist
     filepath = path
     correlationlist = []
